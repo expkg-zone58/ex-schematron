@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ark xmlns="http://www.schematron.info/ark" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.schematron.info/ark ark.xsd">
+  <load>
+    <room>
+      <animal sex="female" carnivore="no">
+        <species>zebra</species>
+        <weight>200</weight>
+        <age>12</age>
+      </animal>
+      <animal sex="male" carnivore="no">
+        <species>zebra</species>
+        <weight>250</weight>
+        <age>13</age>
+      </animal>
+    </room>
+    <room>
+      <animal sex="female" carnivore="yes">
+        <species>lion</species>
+        <weight>200</weight>
+        <age>23</age>
+      </animal>
+      <animal sex="male" carnivore="yes">
+        <species>lion</species>
+        <weight>180</weight>
+        <age>30</age>
+      </animal>
+    </room>
+    <room>
+      <animal sex="female" carnivore="no">
+        <species>elephant</species>
+        <weight>10000</weight>
+        <age>20</age>
+      </animal>
+      <animal sex="male" carnivore="no">
+        <species>elephant</species>
+        <weight>15000</weight>
+        <age>40</age>
+      </animal>
+    </room>
+  </load>
+  <maxReproductionAge>
+    <animal_species>
+      <name>elephant</name>
+      <male>80</male>
+      <female>30</female>
+    </animal_species>
+    <animal_species>
+      <name>lion</name>
+      <male>30</male>
+      <female>15</female>
+    </animal_species>
+    <animal_species>
+      <name>zebra</name>
+      <male>30</male>
+      <female>20</female>
+    </animal_species>
+  </maxReproductionAge>
+  <loadingCapacity>44000</loadingCapacity>
+</ark>

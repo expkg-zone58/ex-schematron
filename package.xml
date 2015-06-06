@@ -1,0 +1,20 @@
+<!--  @see http://cxan.org/faq#add-pkg  -->
+<repo abbrev="ex-schematron">
+  <pkg abbrev="ex-schematron" id="expkg-zone58.github.io/ex-schematron">
+    <name>http://expkg-zone58.github.io/ex-schematron</name>
+    <abstract>XQuery interface to ISO Schematron</abstract>
+    <author id="schematron">http://www.schematron.com/</author>
+    <maintainer id="abunce">Andy Bunce</maintainer>
+    <category id="libs">Libraries</category>
+    <home>http://www.schematron.com/</home>
+    <tag>validate</tag>
+    <tag>svrl</tag>
+    <version num="0.0.1">
+      <dependency processor="basex"/>
+      <file name="ex-dotml-0.0.5.xar" role="pkg"/>
+    </version>
+    <version num="0.0.2">
+      <!-- generated: {fn:current-dateTime()} -->
+    </version>
+  </pkg>
+</repo>
