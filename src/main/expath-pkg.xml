@@ -1,11 +1,14 @@
-<package xmlns="http://expath.org/ns/pkg" name="http://expkg-zone58.github.io/ex-schematron"
-	abbrev="ex-schematron" version="0.0.2" spec="1.0">
-	<title>Transform dotML into dot via XQuery or XSLT</title>
-	<dependency name="basex" />
-	<xquery>
-		<namespace>http://expkg-zone58.github.io/ex-schematron</namespace>
-		<file>schematron.xqm</file>
-	</xquery>
-	<!-- todo xslt interface -->
-	
+<package xmlns="http://expath.org/ns/pkg"
+         name="http://expkg-zone58.github.io/ex-schematron"
+         abbrev="schematron"
+         version="0.0.11"
+         spec="1.0">
+
+   <title>XQuery interface to ISO Schematron</title>
+   <dependency processor="basex" />
+   <xquery> 
+     <namespace>expkg-zone58.validation.schematron</namespace>
+     <file>schematron.xqm</file>
+   </xquery>
+
 </package>

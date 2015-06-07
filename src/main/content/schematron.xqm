@@ -8,7 +8,7 @@
  : @since 2014 
  :)
 
-module namespace sch="http://expkg-zone58.github.io/ex-schematron";
+module namespace sch="expkg-zone58.validation.schematron";
 
 declare namespace s="http://www.ascc.net/xml/schematron";
 declare namespace xsl="http://www.w3.org/1999/XSL/Transform";
@@ -19,9 +19,9 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
 
 (: Edit these paths if you don't follow the "global" install instructions :)
-declare variable $sch:include := resolve-uri("Schematron/iso_dsdl_include.xsl");
-declare variable $sch:expand  := resolve-uri("Schematron/iso_abstract_expand.xsl");
-declare variable $sch:compile := resolve-uri("Schematron/iso_svrl_for_xslt2.xsl");
+declare variable $sch:include := resolve-uri("schematron/iso_dsdl_include.xsl");
+declare variable $sch:expand  := resolve-uri("schematron/iso_abstract_expand.xsl");
+declare variable $sch:compile := resolve-uri("schematron/iso_svrl_for_xslt2.xsl");
 
 declare variable $sch:BADSCHEMA := xs:QName("sch:BADSCHEMA");
 declare variable $sch:BADDOC := xs:QName("sch:BADDOC");

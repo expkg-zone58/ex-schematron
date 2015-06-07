@@ -1,5 +1,7 @@
-
-import module namespace sch="https://github.com/apb2006/EX-schematron" at "../Modules/schematron.xqy";
+(:~
+ : test schematron XQuery interface
+ :)
+import module namespace sch="expkg-zone58.validation.schematron" at "../main/content/schematron.xqm";
 
 declare namespace svrl="http://purl.oclc.org/dsdl/svrl";
 

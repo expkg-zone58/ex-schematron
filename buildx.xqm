@@ -59,9 +59,9 @@ copy  $c:=fn:doc($cxan)
 modify(
 let $pack:=$c/repo/pkg[name=$pkg/@name]
 let $hit:= $pack/version[@num=$pkg/@version]
-let $new:=<version num="{$pkg/@version}">
-          <!-- generated: {fn:current-dateTime()} -->
-          </version>
+let $new:=element version { attribute num {$pkg/@version},
+           comment {"generated: " || fn:current-dateTime()}
+        }
 return if($hit)then () 
        else insert node $new into $pack
      )

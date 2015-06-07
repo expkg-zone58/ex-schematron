@@ -12,7 +12,7 @@ declare variable $dest:=resolve-uri("dist/");
  :)
 declare variable $package as element(pkg:package) :=doc(resolve-uri("expath-pkg.xml",$src))/pkg:package;
 
-declare variable $content:=resolve-uri( $package/@abbrev,$src);
+declare variable $content:=resolve-uri( "content/",$src);
 declare variable $dest-doc:=resolve-uri("doc/",$dest);
 
 

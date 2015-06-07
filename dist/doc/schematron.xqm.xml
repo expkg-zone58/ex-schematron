@@ -1,10 +1,10 @@
 <xqdoc:xqdoc xmlns:xqdoc="http://www.xqdoc.org/1.0">
   <xqdoc:control>
-    <xqdoc:date>2015-06-06T23:19:57.693+01:00</xqdoc:date>
+    <xqdoc:date>2015-06-07T22:47:01.798+01:00</xqdoc:date>
     <xqdoc:version>1.1</xqdoc:version>
   </xqdoc:control>
   <xqdoc:module type="library">
-    <xqdoc:uri>http://expkg-zone58.github.io/ex-schematron</xqdoc:uri>
+    <xqdoc:uri>expkg-zone58.validation.schematron</xqdoc:uri>
     <xqdoc:name>schematron.xqm</xqdoc:name>
     <xqdoc:comment>
       <xqdoc:description>Schematron validation from XQuery
@@ -17,7 +17,7 @@ large chunks based on https://github.com/ndw/ML-Schematron</xqdoc:description>
     </xqdoc:comment>
   </xqdoc:module>
   <xqdoc:namespaces>
-    <xqdoc:namespace prefix="sch" uri="http://expkg-zone58.github.io/ex-schematron"/>
+    <xqdoc:namespace prefix="sch" uri="expkg-zone58.validation.schematron"/>
     <xqdoc:namespace prefix="s" uri="http://www.ascc.net/xml/schematron"/>
     <xqdoc:namespace prefix="xsl" uri="http://www.w3.org/1999/XSL/Transform"/>
     <xqdoc:namespace prefix="svrl" uri="http://purl.oclc.org/dsdl/svrl"/>
