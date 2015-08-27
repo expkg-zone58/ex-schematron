@@ -1,7 +1,7 @@
 <package xmlns="http://expath.org/ns/pkg"
          name="http://expkg-zone58.github.io/ex-schematron"
          abbrev="schematron"
-         version="0.0.11"
+         version="0.1.2"
          spec="1.0">
 
    <title>XQuery interface to ISO Schematron</title>

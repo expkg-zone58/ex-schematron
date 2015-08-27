@@ -22,8 +22,10 @@ let $name:= build:xar($package)
 return (build:transform(
           $package/pkg:xquery/pkg:file,
           function($path){inspect:xqdoc(file:resolve-path( $path,$content))},
-          function($path,$data){ fn:put($data,
-                                resolve-uri(fn:trace($path) || ".xml",$dest-doc))
+          function($path,$data){ file:write(
+                              resolve-uri(fn:trace($path) || ".xml",$dest-doc),
+                              $data
+                               )
                               }
           ),
           (: write xar  :)       

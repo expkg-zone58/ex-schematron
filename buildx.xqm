@@ -24,7 +24,7 @@ declare namespace pkg="http://expath.org/ns/pkg";
  : read data with uri from items in $paths using $fetch
  : then save using $write
  :) 
-declare function transform($paths  as xs:string*,
+declare  function transform($paths  as xs:string*,
                            $fetch,
                            $write )
 {
