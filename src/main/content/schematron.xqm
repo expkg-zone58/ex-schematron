@@ -28,23 +28,29 @@ declare option db:chop 'no';
 
 (: paths to xslt  :)
 declare variable $schx:include := resolve-uri("schematron/iso_dsdl_include.xsl");
-declare variable $schx:expand  := resolve-uri("schematron/iso_abstract_expand.xsl");
+declare variable $schx:expand  := resolve-uri("schematron/iso_abstract_expand-fix.xsl");
 declare variable $schx:compile := resolve-uri("schematron/iso_svrl_for_xslt2.xsl");
 
 declare variable $schx:BADSCHEMA := xs:QName("schx:BADSCHEMA");
 declare variable $schx:BADDOC := xs:QName("schx:BADDOC");
 
 (:~
- : flatten schematron source
+ : flatten schematron source by processing includes
  :)
-declare function schx:flatten($schema as node())
-as  document-node(element(iso:schema))
+declare function schx:include($schema as node(),$params as map(*))
+as document-node(element(iso:schema))
 {
  let $sch:=schx:check-src($schema,
                          $schx:BADSCHEMA,
                          "Schematron schema must be a document or element.")
     
- return xslt:transform($sch,$schx:include)
+ return xslt:transform($sch,$schx:include,$params)
+}; 
+
+declare function schx:include($schema as node())
+as document-node(element(iso:schema))
+{
+    schx:include($schema,map{})
 }; 
 
 (:~ 
@@ -92,7 +98,7 @@ as document-node(element(svrl:schematron-output))?
 (:~ 
  : check node or document
  :)
-declare function schx:check-src(
+declare %private function schx:check-src(
 		$document as node(),
 		$err as xs:QName,
 		$errmsg as xs:string )

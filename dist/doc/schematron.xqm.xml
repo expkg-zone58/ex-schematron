@@ -1,6 +1,6 @@
 <xqdoc:xqdoc xmlns:xqdoc="http://www.xqdoc.org/1.0">
   <xqdoc:control>
-    <xqdoc:date>2015-08-27T21:05:07.565+01:00</xqdoc:date>
+    <xqdoc:date>2015-09-05T11:59:11.516+01:00</xqdoc:date>
     <xqdoc:version>1.1</xqdoc:version>
   </xqdoc:control>
   <xqdoc:module type="library">
@@ -26,6 +26,7 @@ based on https://github.com/ndw/ML-Schematron</xqdoc:description>
     <xqdoc:namespace prefix="iso" uri="http://purl.oclc.org/dsdl/schematron"/>
     <xqdoc:namespace prefix="xsl" uri="http://www.w3.org/1999/XSL/Transform"/>
     <xqdoc:namespace prefix="svrl" uri="http://purl.oclc.org/dsdl/svrl"/>
+    <xqdoc:namespace prefix="ann" uri="http://www.w3.org/2012/xquery"/>
   </xqdoc:namespaces>
   <xqdoc:imports/>
   <xqdoc:variables>
@@ -51,12 +52,29 @@ based on https://github.com/ndw/ML-Schematron</xqdoc:description>
     </xqdoc:variable>
   </xqdoc:variables>
   <xqdoc:functions>
-    <xqdoc:function arity="1">
+    <xqdoc:function arity="2">
       <xqdoc:comment>
-        <xqdoc:description>flatten schematron source</xqdoc:description>
+        <xqdoc:description>flatten schematron source by processing includes</xqdoc:description>
       </xqdoc:comment>
-      <xqdoc:name>schx:flatten</xqdoc:name>
-      <xqdoc:signature>declare function schx:flatten($schema as node()) as document-node(iso:schema)</xqdoc:signature>
+      <xqdoc:name>schx:include</xqdoc:name>
+      <xqdoc:signature>declare function schx:include($schema as node(), $params as map(*)) as document-node(iso:schema)</xqdoc:signature>
+      <xqdoc:parameters>
+        <xqdoc:parameter>
+          <xqdoc:name>schema</xqdoc:name>
+          <xqdoc:type>node()</xqdoc:type>
+        </xqdoc:parameter>
+        <xqdoc:parameter>
+          <xqdoc:name>params</xqdoc:name>
+          <xqdoc:type>map(*)</xqdoc:type>
+        </xqdoc:parameter>
+      </xqdoc:parameters>
+      <xqdoc:return>
+        <xqdoc:type>document-node(iso:schema)</xqdoc:type>
+      </xqdoc:return>
+    </xqdoc:function>
+    <xqdoc:function arity="1">
+      <xqdoc:name>schx:include</xqdoc:name>
+      <xqdoc:signature>declare function schx:include($schema as node()) as document-node(iso:schema)</xqdoc:signature>
       <xqdoc:parameters>
         <xqdoc:parameter>
           <xqdoc:name>schema</xqdoc:name>
@@ -136,7 +154,10 @@ based on https://github.com/ndw/ML-Schematron</xqdoc:description>
         <xqdoc:description>check node or document</xqdoc:description>
       </xqdoc:comment>
       <xqdoc:name>schx:check-src</xqdoc:name>
-      <xqdoc:signature>declare function schx:check-src($document as node(), $err as xs:QName, $errmsg as xs:string) as document-node(element())</xqdoc:signature>
+      <xqdoc:annotations>
+        <xqdoc:annotation name="private"/>
+      </xqdoc:annotations>
+      <xqdoc:signature>declare %private function schx:check-src($document as node(), $err as xs:QName, $errmsg as xs:string) as document-node(element())</xqdoc:signature>
       <xqdoc:parameters>
         <xqdoc:parameter>
           <xqdoc:name>document</xqdoc:name>

@@ -15,3 +15,6 @@ sch-messages-en.xhtml
 sch-messages-fr.xhtml
 sch-messages-nl.xhtml
 schematron-skeleton-api.htm
+
+fixes
+iso_abstract_expand-fix.xsl
