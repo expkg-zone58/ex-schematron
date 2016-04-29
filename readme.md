@@ -8,8 +8,8 @@
 ## Installation
 
 ````
-"https://github.com/expkg-zone58/ex-schematron/releases/download/v0.0.11/schematron-0.0.11.xar"
-!repo:install()
+"https://github.com/expkg-zone58/ex-schematron/releases/download/v0.1.3/schematron-0.1.3.xar"
+=>repo:install()
 ````
 
 ## Usage
