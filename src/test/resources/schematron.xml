@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<iso:schema xmlns="http://purl.oclc.org/dsdl/schematron"
+	xmlns:iso="http://purl.oclc.org/dsdl/schematron" xmlns:cv="http://name.andy.bunce/cv/2014"
+	queryBinding='xslt2' schemaVersion='ISO19757-3'>
+	<iso:title>Test CV</iso:title>
+	<iso:ns prefix='cv' uri='http://name.andy.bunce/cv/2014' />
+
+	<iso:pattern>
+		<iso:rule context="/">
+			<iso:assert test="cv:Cv">Root element must be Cv</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+	<iso:pattern>
+		<iso:rule context="cv:Candidate/cv:Surname">
+			<iso:assert test="cv:CV">Must have a Surname</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+</iso:schema>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Cv xmlns="http://name.andy.bunce/cv/2014">
+	<Candidate>
+		<Name>
+			<FirstName>Andrew</FirstName>
+			<Surname>Bunce</Surname>
+		</Name>
+	</Candidate>
+	<Summary>High calibre DEVELOPER, with over 20 years’ experience in
+		global structured business information and workflow systems, with full
+		life cycle experience at the enterprise level. Experienced with server
+		side design and also building front-end desktop and web applications.
+		Andy has a wide spectrum of skills and experience, ranging from
+		software development, architecture, to information architecture and
+		documentation, allowing innovation and improved communication at all
+		levels of project delivery.
+	</Summary>
+	<AchievementList>
+		<Achievement>
+
+			<Description>Created FX trading workflow documentation catalogue
+				integrating data from many sources. (DITA, XSLT, text extraction,
+				SVG, SKOS, XProc). 
+			</Description>
+		</Achievement>
+		<Achievement>
+
+			<Description>One of a small team that designed and implemented FX
+				Orderwatch, a global FX limit order system, used by more than 20
+				major banks including HSBC and Nomura. 
+			</Description>
+		</Achievement>
+	</AchievementList>
+	<EducationList>
+		<Education>
+			<Period>
+				<From year="1976" />
+				<To year="1979" />
+				<Current>false</Current>
+			</Period>
+			<Organisation>
+				<Name>University of Exeter</Name>
+			</Organisation>
+			<Title>
+				B.Sc. in Pure Mathematics Theoretical Physics (Hons.)  
+			</Title>
+		</Education>
+		<Education>
+			<Period>
+				<From year="1968" />
+				<To year="1975" />
+				<Current>false</Current>
+			</Period>
+			<Organisation>
+				<Name>Ravenswood school for boys,Bromley London</Name>
+			</Organisation>
+			<Title>3 A’ levels, 10 O’ levels 
+			</Title>
+		</Education>
+	</EducationList>
+	<WorkExperienceList>
+		<WorkExperience>
+			<Period>
+				<From year="2010" month="3" />
+				<To year="2014" month="2" />
+				<Current>false</Current>
+			</Period>
+			<Position>
+				<Label>Technical writer</Label>
+			</Position>
+			<Activities>
+			<Activity>
+			Creation of technical documentation for major financial software systems, including: 
+Reuters Electronic Trading: a highly flexible FX and Money Market automated trading suite that enables banks to effectively manage e-business flows for trades and limit orders. 
+Reuters Dealing.: a leading peer-to-peer conversational trading application. 
+			</Activity>
+			</Activities>
+			<Employer>
+				<Name>Thomson Reuters</Name>
+
+			</Employer>
+		</WorkExperience>
+		<WorkExperience>
+			<Period>
+				<From year="1992" month="8" />
+				<To year="2010" month="2" />
+				<Current>false</Current>
+			</Period>
+			<Position>
+				<Label>Lead Software Engineer Reuters Ltd</Label>
+			</Position>
+			<Activities>
+
+			<Activity>
+			Design and implementation, and 3rd line support of FX Orderwatch. A VB front-end linking 
+Reuter’s FX market data with a global order book managed using UNIX servers with Sharp 
+APL. 
+			</Activity>
+			</Activities>
+			<Employer>
+				<Name>Thomson Reuters</Name>
+			</Employer>
+		</WorkExperience>
+	</WorkExperienceList>
+	<SkillList>
+		<Skill>XML processing, Data modelling, information architecture.
+		</Skill>
+		<Skill>Rational and analytical approach to problem solving.</Skill>
+		<Skill>Document creation and management of document library metadata.
+		</Skill>
+	</SkillList>
+</Cv>
+

@@ -23,8 +23,8 @@ declare namespace svrl="http://purl.oclc.org/dsdl/svrl";
 
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
-(: ***** Turn whitespace chopping off. ***** :)
-declare option db:chop 'no';
+(: ***** Turn whitespace chopping off. NOT ALLOWED SINCE 8.4.3 SET IN MAIN ***** :)
+(: declare option db:chop 'no'; :)
 
 (: paths to xslt  :)
 declare variable $schx:include := resolve-uri("schematron/iso_dsdl_include.xsl");
