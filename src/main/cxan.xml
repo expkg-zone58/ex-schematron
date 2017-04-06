@@ -1,0 +1,9 @@
+<package xmlns="http://cxan.org/ns/package" id="ex-schematron">
+    <abstract>An XQuery packaging of ISO Schematron for BaseX. </abstract>
+    <author id="schematron">schematron</author>
+    <maintainer id="abunce">Andy Bunce</maintainer>
+    <home>http://schematron.com/</home>
+    <category id="libs">Library</category>
+    <tag>schematron</tag>
+    <tag>validation</tag>
+</package>

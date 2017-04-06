@@ -1,10 +1,10 @@
 <package xmlns="http://expath.org/ns/pkg"
          name="http://expkg-zone58.github.io/ex-schematron"
          abbrev="schematron"
-         version="0.1.3"
+         version="0.3.0"
          spec="1.0">
 
-   <title>XQuery interface to ISO Schematron</title>
+   <title>An XQuery packaging of ISO Schematron for BaseX.</title>
    <dependency processor="basex" />
    <xquery> 
      <namespace>expkg-zone58.validation.schematron</namespace>

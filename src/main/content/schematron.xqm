@@ -1,20 +1,13 @@
 xquery version "3.0" encoding "UTF-8";
 (:~
- : Schematron validation from XQuery
- : uses XSLT from http://www.schematron.com/implementation.html
- :  <xsl:param name="include-schematron">true</xsl:param>
- :	<xsl:param name="include-crdl">true</xsl:param>
- :	<xsl:param name="include-xinclude">true</xsl:param>
- :	<xsl:param name="include-dtll">true</xsl:param>
- :	<xsl:param name="include-relaxng">true</xsl:param>
- :	<xsl:param name="include-xlink">true</xsl:param>
- : packaged using EXPath targeted at BaseX 8.2+
- : based on https://github.com/ndw/ML-Schematron
+ : Perform Schematron validation from XQuery using the reference XSLT implementation
+ : packaged using EXPath targeted at BaseX 8.6+
+ : based on <a href="https://github.com/ndw/ML-Schematron">https://github.com/ndw/ML-Schematron</a>
  : @author Andy Bunce
- : @since 2014 
+ : @version 0.3.0 
  :)
  
-module namespace schx="expkg-zone58.validation.schematron";
+module namespace schx="expkg-zone58:validation.schematron";
 
 
 declare namespace iso="http://purl.oclc.org/dsdl/schematron";
@@ -27,15 +20,42 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
 (: declare option db:chop 'no'; :)
 
 (: paths to xslt  :)
-declare variable $schx:include := resolve-uri("schematron/iso_dsdl_include.xsl");
-declare variable $schx:expand  := resolve-uri("schematron/iso_abstract_expand-fix.xsl");
-declare variable $schx:compile := resolve-uri("schematron/iso_svrl_for_xslt2.xsl");
+declare %private variable $schx:include := resolve-uri("schematron/iso_dsdl_include.xsl");
+declare %private variable $schx:expand  := resolve-uri("schematron/iso_abstract_expand-fix.xsl");
+declare %private variable $schx:compile := resolve-uri("schematron/iso_svrl_for_xslt2.xsl");
 
-declare variable $schx:BADSCHEMA := xs:QName("schx:BADSCHEMA");
-declare variable $schx:BADDOC := xs:QName("schx:BADDOC");
+declare %private variable $schx:BADSCHEMA := xs:QName("schx:BADSCHEMA");
+declare %private variable $schx:BADDOC := xs:QName("schx:BADDOC");
+
+(:~
+ : Validate <code>$document</code> using schematron <code>$schema</code>
+ : @param $params schematron options passed to xslt
+ : @result SVRL validation report
+ : @error schx:BADDOC
+ :)
+declare function schx:validate-document(
+  $document as node(),
+  $schema as node(),
+  $params as map(*))
+as document-node(element(svrl:schematron-output))?
+{
+  let $compiled := schx:compile-schema($schema, $params)
+  let $doc:= schx:check-src($document,
+                         $schx:BADDOC,
+                         "Schematron can only validate a document or element.")
+  return
+    xslt:transform( $doc, $compiled,$params)
+};
+
+declare function schx:validate-document($document, $schema)
+as document-node(element(svrl:schematron-output))?
+{
+  schx:validate-document($document, $schema, map{})
+};
 
 (:~
  : flatten schematron source by processing includes
+ : @error schx:BADSCHEMA
  :)
 declare function schx:include($schema as node(),$params as map(*))
 as document-node(element(iso:schema))
@@ -53,9 +73,11 @@ as document-node(element(iso:schema))
     schx:include($schema,map{})
 }; 
 
-(:~ 
+(:~
+ : Compile a schematron source to XSLT 
  : @param $schema schematron as document or element 
  : @return xslt implementation of rules in $schema
+ : @error schx:BADSCHEMA
  :)
 declare function schx:compile-schema(
   $schema as node(),
@@ -72,31 +94,11 @@ declare function schx:compile-schema(
     xslt:transform( $expanded,$schx:compile, $params)
 };
 
-declare function schx:validate-document($document, $schema)
-as document-node(element(svrl:schematron-output))?
-{
-  schx:validate-document($document, $schema, map{})
-};
 
-(:~
- : @param $params schematron options
- :)
-declare function schx:validate-document(
-  $document as node(),
-  $schema as node(),
-  $params as map(*))
-as document-node(element(svrl:schematron-output))?
-{
-  let $compiled := schx:compile-schema($schema, $params)
-  let $doc:= schx:check-src($document,
-                         $schx:BADDOC,
-                         "Schematron can only validate a document or element.")
-  return
-    xslt:transform( $doc, $compiled,$params)
-};
 
 (:~ 
- : check node or document
+ : check $document is suitable for validation node or document
+ : @error varies
  :)
 declare %private function schx:check-src(
 		$document as node(),

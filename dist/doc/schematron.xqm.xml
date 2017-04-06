@@ -1,24 +1,18 @@
 <xqdoc:xqdoc xmlns:xqdoc="http://www.xqdoc.org/1.0">
   <xqdoc:control>
-    <xqdoc:date>2016-04-29T18:33:27.337+01:00</xqdoc:date>
+    <xqdoc:date>2017-03-11T22:50:19.621Z</xqdoc:date>
     <xqdoc:version>1.1</xqdoc:version>
   </xqdoc:control>
   <xqdoc:module type="library">
     <xqdoc:uri>expkg-zone58.validation.schematron</xqdoc:uri>
     <xqdoc:name>schematron.xqm</xqdoc:name>
     <xqdoc:comment>
-      <xqdoc:description>Schematron validation from XQuery
-uses XSLT from http://www.schematron.com/implementation.html
- &lt;xsl:param name="include-schematron"&gt;true&lt;/xsl:param&gt;
-	&lt;xsl:param name="include-crdl"&gt;true&lt;/xsl:param&gt;
-	&lt;xsl:param name="include-xinclude"&gt;true&lt;/xsl:param&gt;
-	&lt;xsl:param name="include-dtll"&gt;true&lt;/xsl:param&gt;
-	&lt;xsl:param name="include-relaxng"&gt;true&lt;/xsl:param&gt;
-	&lt;xsl:param name="include-xlink"&gt;true&lt;/xsl:param&gt;
-packaged using EXPath targeted at BaseX 8.2+
-based on https://github.com/ndw/ML-Schematron</xqdoc:description>
+      <xqdoc:description>Perform Schematron validation from XQuery using the reference XSLT implementation
+packaged using EXPath targeted at BaseX 8.6+
+based on <a href="https://github.com/ndw/ML-Schematron">https://github.com/ndw/ML-Schematron</a>
+      </xqdoc:description>
       <xqdoc:author>Andy Bunce</xqdoc:author>
-      <xqdoc:since>2014</xqdoc:since>
+      <xqdoc:version>0.2.0</xqdoc:version>
     </xqdoc:comment>
   </xqdoc:module>
   <xqdoc:namespaces>
@@ -52,9 +46,55 @@ based on https://github.com/ndw/ML-Schematron</xqdoc:description>
     </xqdoc:variable>
   </xqdoc:variables>
   <xqdoc:functions>
+    <xqdoc:function arity="3">
+      <xqdoc:comment>
+        <xqdoc:description>Validate <code>$document</code> using schematron <code>$schema</code>
+        </xqdoc:description>
+        <xqdoc:param>$params schematron options passed to xslt</xqdoc:param>
+        <xqdoc:custom tag="result">SVRL validation report</xqdoc:custom>
+        <xqdoc:error>schx:BADDOC</xqdoc:error>
+      </xqdoc:comment>
+      <xqdoc:name>schx:validate-document</xqdoc:name>
+      <xqdoc:signature>declare function schx:validate-document($document as node(), $schema as node(), $params as map(*)) as document-node(svrl:schematron-output)?</xqdoc:signature>
+      <xqdoc:parameters>
+        <xqdoc:parameter>
+          <xqdoc:name>document</xqdoc:name>
+          <xqdoc:type>node()</xqdoc:type>
+        </xqdoc:parameter>
+        <xqdoc:parameter>
+          <xqdoc:name>schema</xqdoc:name>
+          <xqdoc:type>node()</xqdoc:type>
+        </xqdoc:parameter>
+        <xqdoc:parameter>
+          <xqdoc:name>params</xqdoc:name>
+          <xqdoc:type>map(*)</xqdoc:type>
+        </xqdoc:parameter>
+      </xqdoc:parameters>
+      <xqdoc:return>
+        <xqdoc:type occurrence="?">document-node(svrl:schematron-output)</xqdoc:type>
+      </xqdoc:return>
+    </xqdoc:function>
+    <xqdoc:function arity="2">
+      <xqdoc:name>schx:validate-document</xqdoc:name>
+      <xqdoc:signature>declare function schx:validate-document($document as item()*, $schema as item()*) as document-node(svrl:schematron-output)?</xqdoc:signature>
+      <xqdoc:parameters>
+        <xqdoc:parameter>
+          <xqdoc:name>document</xqdoc:name>
+          <xqdoc:type occurrence="*">item()</xqdoc:type>
+        </xqdoc:parameter>
+        <xqdoc:parameter>
+          <xqdoc:name>schema</xqdoc:name>
+          <xqdoc:type occurrence="*">item()</xqdoc:type>
+        </xqdoc:parameter>
+      </xqdoc:parameters>
+      <xqdoc:return>
+        <xqdoc:type occurrence="?">document-node(svrl:schematron-output)</xqdoc:type>
+      </xqdoc:return>
+    </xqdoc:function>
     <xqdoc:function arity="2">
       <xqdoc:comment>
         <xqdoc:description>flatten schematron source by processing includes</xqdoc:description>
+        <xqdoc:error>schx:BADSCHEMA</xqdoc:error>
       </xqdoc:comment>
       <xqdoc:name>schx:include</xqdoc:name>
       <xqdoc:signature>declare function schx:include($schema as node(), $params as map(*)) as document-node(iso:schema)</xqdoc:signature>
@@ -90,6 +130,7 @@ based on https://github.com/ndw/ML-Schematron</xqdoc:description>
         <xqdoc:description/>
         <xqdoc:param>$schema schematron as document or element</xqdoc:param>
         <xqdoc:return>xslt implementation of rules in $schema</xqdoc:return>
+        <xqdoc:error>schx:BADSCHEMA</xqdoc:error>
       </xqdoc:comment>
       <xqdoc:name>schx:compile-schema</xqdoc:name>
       <xqdoc:signature>declare function schx:compile-schema($schema as node(), $params as map(*)) as document-node(xsl:stylesheet)</xqdoc:signature>
@@ -107,51 +148,10 @@ based on https://github.com/ndw/ML-Schematron</xqdoc:description>
         <xqdoc:type>document-node(xsl:stylesheet)</xqdoc:type>
       </xqdoc:return>
     </xqdoc:function>
-    <xqdoc:function arity="2">
-      <xqdoc:name>schx:validate-document</xqdoc:name>
-      <xqdoc:signature>declare function schx:validate-document($document as item()*, $schema as item()*) as document-node(svrl:schematron-output)?</xqdoc:signature>
-      <xqdoc:parameters>
-        <xqdoc:parameter>
-          <xqdoc:name>document</xqdoc:name>
-          <xqdoc:type occurrence="*">item()</xqdoc:type>
-        </xqdoc:parameter>
-        <xqdoc:parameter>
-          <xqdoc:name>schema</xqdoc:name>
-          <xqdoc:type occurrence="*">item()</xqdoc:type>
-        </xqdoc:parameter>
-      </xqdoc:parameters>
-      <xqdoc:return>
-        <xqdoc:type occurrence="?">document-node(svrl:schematron-output)</xqdoc:type>
-      </xqdoc:return>
-    </xqdoc:function>
     <xqdoc:function arity="3">
       <xqdoc:comment>
-        <xqdoc:description/>
-        <xqdoc:param>$params schematron options</xqdoc:param>
-      </xqdoc:comment>
-      <xqdoc:name>schx:validate-document</xqdoc:name>
-      <xqdoc:signature>declare function schx:validate-document($document as node(), $schema as node(), $params as map(*)) as document-node(svrl:schematron-output)?</xqdoc:signature>
-      <xqdoc:parameters>
-        <xqdoc:parameter>
-          <xqdoc:name>document</xqdoc:name>
-          <xqdoc:type>node()</xqdoc:type>
-        </xqdoc:parameter>
-        <xqdoc:parameter>
-          <xqdoc:name>schema</xqdoc:name>
-          <xqdoc:type>node()</xqdoc:type>
-        </xqdoc:parameter>
-        <xqdoc:parameter>
-          <xqdoc:name>params</xqdoc:name>
-          <xqdoc:type>map(*)</xqdoc:type>
-        </xqdoc:parameter>
-      </xqdoc:parameters>
-      <xqdoc:return>
-        <xqdoc:type occurrence="?">document-node(svrl:schematron-output)</xqdoc:type>
-      </xqdoc:return>
-    </xqdoc:function>
-    <xqdoc:function arity="3">
-      <xqdoc:comment>
-        <xqdoc:description>check node or document</xqdoc:description>
+        <xqdoc:description>check $document is suitable for validation node or document</xqdoc:description>
+        <xqdoc:error>varies</xqdoc:error>
       </xqdoc:comment>
       <xqdoc:name>schx:check-src</xqdoc:name>
       <xqdoc:annotations>
